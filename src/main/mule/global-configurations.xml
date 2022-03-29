@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd 
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd">
+	<salesforce:sfdc-config name="Salesforce_Config" doc:name="Salesforce Config" doc:id="3eed2624-e7af-4071-9e73-88e55b4e3f9d" >
+		<salesforce:basic-connection username="dshabcds@gmail.com" password="password" securityToken="RoS4bFTc9cyncuazBJ8TclsWF" />
+	</salesforce:sfdc-config>
+	<configuration doc:name="Configuration" doc:id="9939d638-afb1-489b-86c1-a3e390f5d7ac" defaultErrorHandler-ref="global-error-handlingError_Handler" />
+	<http:listener-config name="product-salesforce-integration-api-httpListenerConfig">
+        <http:listener-connection host="0.0.0.0" port="8081" />
+    </http:listener-config>
+    <apikit:config name="product-salesforce-integration-api-config" api="resource::7532a3fe-5b15-4177-b1e9-079e750af9fd:product-salesforce-integration-api:1.0.1:raml:zip:product-salesforce-integration-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+</mule>

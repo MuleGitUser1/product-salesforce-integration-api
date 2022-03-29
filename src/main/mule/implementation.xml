@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="sf-implementationFlow" doc:id="e231fb91-a384-448b-9bac-46ca5543aa50" >
+		<logger level="INFO" doc:name="Logger Started" doc:id="a4401cdb-9c83-49d2-a73a-13bb539415f2" message="The Implementation Flow Logger starts"/>
+		<ee:transform doc:name="product-sf-mapping" doc:id="ef9ac08c-520e-4d01-8c94-35b2880a2f82" >
+			<ee:message >
+				<ee:set-payload resource="dwl/product-sf-mapping-upsert.dwl" />
+			</ee:message>
+		</ee:transform>
+		<salesforce:upsert doc:name="product Upsert" doc:id="a9ca17e5-ccd2-41fd-9d20-bf726c0c7e13" config-ref="Salesforce_Config" objectType="Product2" externalIdFieldName="Name"/>
+		<logger level="INFO" doc:name="Logger End" doc:id="933d65a0-a68e-4162-9897-e0c50b0301f7" message="The Implementation flow Logger End"/>
+		<error-handler ref="global-error-handlingError_Handler" />
+	</flow>
+</mule>
